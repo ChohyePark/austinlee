@@ -39,7 +39,6 @@ const Title = styled.div`
 const Canvas = () => {
   let inSideArray = [];
   let dataArray = [];
-
   const canvasRef = useRef(null);
   const contextRef = useRef(null); // 캔버스 드로잉 컨텍스트 참조
   const [isdrawing, setIsDrawing] = useState(false);
@@ -50,7 +49,7 @@ const Canvas = () => {
 
   useEffect(() => {
     CanvasInit();
-  }, [artList]);
+  }, []);
 
   const CanvasInit = () => {
     const canvas = canvasRef.current;
@@ -59,13 +58,13 @@ const Canvas = () => {
     canvas.height = parent.clientHeight;
     setCanvasTag(canvas);
     const context = canvas.getContext('2d');
-    contextRef.current = context; // 그림그리는것에 필요한 메서드는 contextRef.current 기준으로 작동
+    contextRef.current = context; // 그림 그리는것에 필요한 메서드는 contextRef.current 기준으로 작동
     setCtx(contextRef.current);
     drawFrame(context, canvas);
   };
 
   const drawFrame = (context, canvas) => {
-    const backImg = new Image();
+    const backImg = new Image(); // 프레임에 이미지 넣어주는 작업
     backImg.src = artList[currentImageIndex].img;
     backImg.onload = () => {
       context.drawImage(backImg, 0, 0, canvas.width, canvas.height);
@@ -84,9 +83,10 @@ const Canvas = () => {
   const inSide = (_x, _y, maxSize, size) => {
     let inter = null;
     if (inSideArray.length >= maxSize) {
-      setIsDrawing(false);
+      setIsDrawing(false); // 그림 그리기 그만
       let i = 1;
       inter = setInterval(() => {
+        //페이드 인아웃 효과
         ctx.save();
         ctx.beginPath();
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -97,12 +97,12 @@ const Canvas = () => {
         ctx.restore();
         if (i <= 0) {
           clearInterval(inter);
-          drawFrame(ctx, canvasTag);
+          drawFrame(ctx, canvasTag); // 다음 그림 이미지
           inter = null;
         }
-        setCurrentInfoIndex((currentInfoIndex + 1) % artList.length);
+        setCurrentInfoIndex((currentInfoIndex + 1) % artList.length); // 다음 그림 정보
 
-        //dataArray가 정확히 무얼 담아 놓는 배열인지
+        //페이드 인아웃용 배열
         dataArray.forEach((item) => {
           ctx.save();
           ctx.beginPath();
@@ -125,12 +125,13 @@ const Canvas = () => {
   };
 
   // nativeEvent 설명, 주석 달아놓기
+  // 그림 그리기
   const drawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent; // 마우스 좌표값
     const parent = canvasRef.current.parentElement;
     const width = parent.clientWidth;
     const height = parent.clientHeight;
-    let size = 95;
+    let size = 95; // 지우개 크기
     let row = height / size / 1.97;
     let column = width / size / 1.97;
     let maxSize = row * column;
@@ -151,7 +152,7 @@ const Canvas = () => {
       json.target = true;
       inSideArray.push(json); //대상원을 추가 합니다
     }
-    dataArray.push(json); //다시 그리기용(페이드인 아웃용) 배열에 넣습니다
+    dataArray.push(json);
 
     // 드로잉 시작
     ctx.save();
