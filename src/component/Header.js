@@ -13,7 +13,7 @@ const MainHeader = styled.header`
 `;
 
 const Header = () => {
-  return <MainHeader>Autin lee</MainHeader>;
+  return <MainHeader>Austin lee</MainHeader>;
 };
 
 export default Header;
