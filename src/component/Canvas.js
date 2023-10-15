@@ -124,7 +124,7 @@ const Canvas = () => {
     }
   };
 
-  // nativeEvent 설명, 주석 달아놓기
+  // nativeEvent : 브라우저 기본 이벤트
   // 그림 그리기
   const drawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent; // 마우스 좌표값
@@ -150,7 +150,7 @@ const Canvas = () => {
     let json = { x: offsetX, y: offsetY, target: false };
     if (!check || check.length === 0) {
       json.target = true;
-      inSideArray.push(json); //대상원을 추가 합니다
+      inSideArray.push(json);
     }
     dataArray.push(json);
 
