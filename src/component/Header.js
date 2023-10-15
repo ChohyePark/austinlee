@@ -11,9 +11,6 @@ const Header = styled.header`
   background-color: #ffff;
   height: 50px;
 `;
-
-const Logo = styled.div``;
-
 export default function () {
   return <Header>Austin Lee</Header>;
 }

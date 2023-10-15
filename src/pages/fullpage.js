@@ -1,6 +1,4 @@
-import axios from 'axios';
 import Canvas from '../component/Canvas';
-import { useEffect, useState } from 'react';
 import Header from '../component/Header';
 
 const Fullpage = () => {

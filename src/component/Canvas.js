@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import artList from '../data';
 import CustomCurser from '../asset/brush.png';
 import styled from 'styled-components';
@@ -148,7 +148,7 @@ const Canvas = () => {
     });
 
     let json = { x: offsetX, y: offsetY, target: false };
-    if (!check || check.length == 0) {
+    if (!check || check.length === 0) {
       json.target = true;
       inSideArray.push(json); //대상원을 추가 합니다
     }
@@ -157,7 +157,7 @@ const Canvas = () => {
     // 드로잉 시작
     ctx.save();
     ctx.beginPath();
-    ctx.globalCompositeOperation = 'destination-out';
+    ctx.globalCompositeOperation = 'destination-out'; // 블렌딩 모드 이미 그려진 그림 일부를 제거
     ctx.arc(
       offsetX,
       offsetY,
