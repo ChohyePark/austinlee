@@ -48,27 +48,29 @@ const Canvas = () => {
   const [canvasTag, setCanvasTag] = useState();
 
   useEffect(() => {
+    const CanvasInit = () => {
+      const canvas = canvasRef.current;
+      const parent = canvas.parentElement;
+      canvas.width = parent.clientWidth;
+      canvas.height = parent.clientHeight;
+      setCanvasTag(canvas);
+      const context = canvas.getContext('2d');
+      contextRef.current = context; // 그림 그리는것에 필요한 메서드는 contextRef.current 기준으로 작동
+      setCtx(contextRef.current);
+      drawFrame(context, canvas);
+    };
     CanvasInit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const CanvasInit = () => {
-    const canvas = canvasRef.current;
-    const parent = canvas.parentElement;
-    canvas.width = parent.clientWidth;
-    canvas.height = parent.clientHeight;
-    setCanvasTag(canvas);
-    const context = canvas.getContext('2d');
-    contextRef.current = context; // 그림 그리는것에 필요한 메서드는 contextRef.current 기준으로 작동
-    setCtx(contextRef.current);
-    drawFrame(context, canvas);
-  };
 
   const drawFrame = (context, canvas) => {
     const backImg = new Image(); // 프레임에 이미지 넣어주는 작업
     backImg.src = artList[currentImageIndex].img;
     backImg.onload = () => {
       context.drawImage(backImg, 0, 0, canvas.width, canvas.height);
-      setCurrentImageIndex((currentImageIndex + 1) % artList.length);
+      setCurrentImageIndex(
+        (currentImageIndex) => (currentImageIndex + 1) % artList.length
+      );
     };
   };
 

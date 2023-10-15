@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Header = styled.header`
+const MainHeader = styled.header`
   border: 2px solid black;
   padding-top: 10px;
   text-align: center;
@@ -11,6 +11,9 @@ const Header = styled.header`
   background-color: #ffff;
   height: 50px;
 `;
-export default function () {
-  return <Header>Austin Lee</Header>;
-}
+
+const Header = () => {
+  return <MainHeader>Autin lee</MainHeader>;
+};
+
+export default Header;
