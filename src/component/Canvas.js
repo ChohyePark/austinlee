@@ -68,9 +68,7 @@ const Canvas = () => {
     backImg.src = artList[currentImageIndex].img;
     backImg.onload = () => {
       context.drawImage(backImg, 0, 0, canvas.width, canvas.height);
-      setCurrentImageIndex(
-        (currentImageIndex) => (currentImageIndex + 1) % artList.length
-      );
+      setCurrentImageIndex((currentImageIndex + 1) % artList.length);
     };
   };
 
