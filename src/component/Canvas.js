@@ -4,7 +4,6 @@ import CustomCurser from '../asset/brush.png';
 import styled from 'styled-components';
 
 const Container = styled.main`
-  width: 1410px;
   height: 860px;
   display: flex;
   flex-direction: row;
@@ -12,7 +11,7 @@ const Container = styled.main`
 
 const CanvasWrapper = styled.section`
   cursor: url(${CustomCurser}), auto;
-  flex: 1.2;
+  width: 740px;
   overflow: hidden;
   background-image: url(${(props) => props.$url});
   background-size: 100% 100%;

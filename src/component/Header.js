@@ -7,7 +7,6 @@ const MainHeader = styled.header`
   font-size: 30px;
   position: sticky;
   top: 0px;
-  width: 100%;
   background-color: #ffff;
   height: 50px;
 `;
